@@ -69,14 +69,14 @@ function getCashOut() {
 
     const cashIn = transactions.filter((item) => item.type === "2");
 
-    if(cashIn.lenght) {
+    if(cashIn.length) {
         let cashInHtml = ``;
         let limit = 0;
     
-        if(cashIn.lenght > 5) {
+        if(cashIn.length > 5) {
             limit = 5;
         } else {
-            limit = cashIn.lenght;
+            limit = cashIn.length;
         }
 
         for (let index = 0; index < limit; index++) {
@@ -108,14 +108,14 @@ function getCashIn() {
 
     const cashIn = transactions.filter((item) => item.type === "1");
 
-    if(cashIn.lenght) {
+    if(cashIn.length) {
         let cashInHtml = ``;
         let limit = 0;
     
-        if(cashIn.lenght > 5) {
+        if(cashIn.length > 5) {
             limit = 5;
         } else {
-            limit = cashIn.lenght;
+            limit = cashIn.length;
         }
 
         for (let index = 0; index < limit; index++) {
@@ -138,21 +138,22 @@ function getCashIn() {
             `
         }
         document.getElementById("cash-in-list").innerHTML = cashInHtml;
-    }
+    } 
 }
 
 function getTotal() {
-    const transactions = data.transactions;
+    const transactions = data.transactions
+    let total = 0;
 
     transactions.forEach((item) => {
         if(item.type === "1") {
-            valortotal += item.value;
+            total += item.value;
         } else {
-            valortotal -= item.value;
+            total -= item.value;
         }
     });
-
-    document.getElementById("valortotal").innerHTML = `R$ ${valortotal.toFixed(2)}`;
+    
+    document.getElementById("total").innerHTML = `R$ ${total.toFixed(2)}`
 }
 
 function saveData(data) {
